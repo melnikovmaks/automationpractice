@@ -15,17 +15,17 @@ public class ContactUsPage {
 
   public ContactUsPage pickContactCustomerService() {
     contactCustomerService.click();
-    return new ContactUsPage();
+    return this;
   }
 
   public ContactUsPage pickLastOrder() {
     lastOrder.click();
-    return new ContactUsPage();
+    return this;
   }
 
   public ContactUsPage pickLastProduct() {
     lastProduct.click();
-    return new ContactUsPage();
+    return this;
   }
 
   public ContactUsPage setMessageFieldOnField(String message) {
@@ -35,7 +35,7 @@ public class ContactUsPage {
 
   public ContactUsPage clickSendButton() {
     sendButton.click();
-    return new ContactUsPage();
+    return this;
   }
 
   public String getAlertMessage() {
