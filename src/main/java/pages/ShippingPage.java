@@ -14,11 +14,11 @@ public class ShippingPage {
 
   public ShippingPage clickTermsOfServiceCheckbox() {
     termsOfServiceCheckbox.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();
-    return new ShippingPage();
+    return this;
   }
 
   public PaymentPage clickProceedToCheckoutButton() {
-    proceedToCheckoutButton.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();
+    proceedToCheckoutButton.click();
     return new PaymentPage();
   }
 }

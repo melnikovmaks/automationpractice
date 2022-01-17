@@ -24,7 +24,7 @@ public class MyAccountPage {
 
   public MyAccountPage hoverCategoryWoman() {
     menuBlocksButtons.should(CollectionCondition.size(4), Duration.ofSeconds(20)).get(0).hover();
-    return new MyAccountPage();
+    return this;
   }
 
   public CategoryBlousesPage clickCategoryBlousesButton() {
