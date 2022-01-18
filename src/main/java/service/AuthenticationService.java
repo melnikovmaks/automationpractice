@@ -1,5 +1,6 @@
 package service;
 
+import builders.CreateAccountBuilder;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
@@ -18,28 +19,30 @@ public class AuthenticationService {
     return new MyAccountPage();
   }
 
-  public MyAccountPage createAccount() {
+  public MyAccountPage createAccount(
+      CreateAccountBuilder createAccountBuilder
+  ) {
     loginPage.setValueOnCreateField(randomMailService.mailRandom())
         .clickSubmitCreateButton()
         .clickMrRadio()
-        .setFirstNameOnField("Ivan")
-        .setLastNameField("Ivanov")
-        .setPasswdOnField("Qwerty123")
+        .setFirstNameOnField(createAccountBuilder.getFirstName())
+        .setLastNameField(createAccountBuilder.getLastName())
+        .setPasswdOnField(createAccountBuilder.getPasswd())
         .pickDaysOfBirth()
         .pickMonthsOfBirth()
         .pickYearsOfBirth()
         .clickNewsletterCheckbox()
         .clickOffersCheckbox()
-        .setCompanyOnField("kaseya")
-        .setAddressOnField("701 Brickell Avenue")
-        .setCityOnField("Miami")
+        .setCompanyOnField(createAccountBuilder.getCompany())
+        .setAddressOnField(createAccountBuilder.getAddress())
+        .setCityOnField(createAccountBuilder.getCity())
         .pickStateFlorida()
-        .setPostcodeOnField("33131")
+        .setPostcodeOnField(createAccountBuilder.getPostcode())
         .pickUsCountry()
-        .setAdditionalInformationOnField("Additional information")
-        .setHomePhoneOnField("+375292929297")
-        .setMobilePhoneOnField("+375333333333")
-        .setAddressAliasFieldOnField("18, Baker street")
+        .setAdditionalInformationOnField(createAccountBuilder.getAdditionalInformation())
+        .setHomePhoneOnField(createAccountBuilder.getHomePhone())
+        .setMobilePhoneOnField(createAccountBuilder.getMobilePhone())
+        .setAddressAliasFieldOnField(createAccountBuilder.getAddressAlias())
         .clickRegisterButton();
     return new MyAccountPage();
   }

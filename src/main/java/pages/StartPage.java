@@ -5,7 +5,6 @@ import java.time.Duration;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.element;
@@ -16,11 +15,6 @@ public class StartPage {
   private final SelenideElement signInButton = element(".login");
   private final ElementsCollection menuBlocksButtons = elements(".sf-with-ul");
   private final SelenideElement summerDressesCategory = element(".submenu-container > li:last-child a");
-
-  public StartPage open() {
-    Selenide.open("/");
-    return this;
-  }
 
   public LoginPage openLoginPage() {
     signInButton.shouldBe(Condition.visible, Duration.ofSeconds(20)).click();

@@ -1,18 +1,10 @@
 package service;
 
-import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class RandomMailService {
 
   public String mailRandom() {
-    String letters = "abcdefghijklmnopqrstuvwxyz";
-    char[] chArray = letters.toCharArray();
-    Random random = new Random();
-    StringBuffer buffer = new StringBuffer();
-    for (int i = 0; i < 10; i++) {
-      buffer.append(chArray[random.nextInt(chArray.length)]);
-    }
-    buffer.append("@gmail.com");
-    return buffer.toString();
+    return RandomStringUtils.randomAlphabetic(10) + "@gmail.com";
   }
 }
