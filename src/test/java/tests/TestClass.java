@@ -7,29 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import pages.BlouseClothesPage;
-import pages.ContactUsPage;
-import pages.FadedTShirtPage;
-import pages.MyWishlistsPage;
-import pages.OrderConfirmationPage;
-import pages.PrintedSummerDressPage;
-import pages.StartPage;
-import service.AuthenticationService;
-import service.OrderClothesService;
 
 import static org.testng.Assert.assertEquals;
 
 public class TestClass extends BaseTest {
 
-  StartPage startPage = new StartPage();
-  AuthenticationService authenticationService = new AuthenticationService();
-  OrderClothesService orderClothesService = new OrderClothesService();
-  OrderConfirmationPage orderConfirmationPage = new OrderConfirmationPage();
-  ContactUsPage contactUsPage = new ContactUsPage();
-  FadedTShirtPage fadedTShirtPage = new FadedTShirtPage();
-  BlouseClothesPage blouseClothesPage = new BlouseClothesPage();
-  MyWishlistsPage myWishlistsPage = new MyWishlistsPage();
-  PrintedSummerDressPage printedSummerDressPage = new PrintedSummerDressPage();
   CreateAccountBuilder createAccountBuilder = CreateAccountBuilder.builder()
       .firstName("Ivan")
       .lastName("Ivanov")
@@ -139,10 +121,10 @@ public class TestClass extends BaseTest {
         .clickSummerDressesCategory()
         .hoverFirstPrintedDress()
         .clickMoreButton();
-    assertEquals(printedSummerDressPage.getColorOrangeColorPick(), ColorType.ORANGE.getRba());
-    assertEquals(printedSummerDressPage.getColorBlueColorPick(), ColorType.BLUE.getRba());
-    assertEquals(printedSummerDressPage.getColorBlackColorPick(), ColorType.BLACK.getRba());
-    assertEquals(printedSummerDressPage.getColorYellowColorPick(), ColorType.YELLOW.getRba());
+    assertEquals(printedSummerDressPage.getColorOrangeColorPick(), ColorType.ORANGE.getRgba());
+    assertEquals(printedSummerDressPage.getColorBlueColorPick(), ColorType.BLUE.getRgba());
+    assertEquals(printedSummerDressPage.getColorBlackColorPick(), ColorType.BLACK.getRgba());
+    assertEquals(printedSummerDressPage.getColorYellowColorPick(), ColorType.YELLOW.getRgba());
     assertEquals(printedSummerDressPage.pickColorBlack()
         .getSrcMainImage(), ColorType.BLACK.getSrc());
     assertEquals(printedSummerDressPage.pickColorBlue()

@@ -17,7 +17,7 @@ public enum ColorType {
     this.src = src;
   }
 
-  public String getRba() {
+  public String getRgba() {
     return value;
   }
 

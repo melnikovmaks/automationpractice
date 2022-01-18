@@ -26,7 +26,7 @@ public class OrderClothesService {
     myAccountPage.openCategoryDressesPage()
         .openCategoryCasualDressesPage()
         .hoverPrintedDress()
-        .hoverPrintedDress().addToCart()
+        .addToCart()
         .redirectToShoppingCart()
         .clickProceedToCheckoutButton()
         .clickProceedToCheckoutButton()
