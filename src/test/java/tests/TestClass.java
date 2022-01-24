@@ -50,7 +50,7 @@ public class TestClass extends BaseTest {
   ) {
     startPage.openLoginPage();
     authenticationService.loginOnSite(mail, password);
-    orderClothesService.orderCasualDressByBankWire();
+    orderClothesService.checkOrderCasualDressByBankWire();
   }
 
   @Step(value = " sd")
@@ -61,7 +61,7 @@ public class TestClass extends BaseTest {
   public void checkSendEmailToCustomerService() {
     startPage.openLoginPage();
     authenticationService.createAccount(createAccountBuilder);
-    orderClothesService.orderCasualDressByBankWire();
+    orderClothesService.checkOrderCasualDressByBankWire();
     orderConfirmationPage.clickContactUsButton()
         .pickContactCustomerService()
         .pickLastOrder()

@@ -24,7 +24,7 @@ public class OrderClothesService {
       "If you have questions, comments or concerns, please contact our expert customer support team. .";
 
   @Step(value = "Check message after buy")
-  public void orderCasualDressByBankWire() {
+  public void checkOrderCasualDressByBankWire() {
     myAccountPage.openCategoryDressesPage()
         .openCategoryCasualDressesPage()
         .hoverPrintedDress()
