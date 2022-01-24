@@ -149,12 +149,4 @@ public class TestClass extends BaseTest {
     assertEquals(printedSummerDressPage.pickColorYellow()
         .getSrcMainImage(), ColorType.YELLOW.getSrc());
   }
-
-  @Story("story test11")
-  @Description("Description test11")
-  @Epic("epic test11")
-  @Test
-  public void test1() {
-    System.out.println("test1");
-  }
 }
