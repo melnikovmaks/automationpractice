@@ -17,7 +17,7 @@ public class StartPage {
   private final SelenideElement summerDressesCategory = element(".submenu-container > li:last-child a");
 
   public LoginPage openLoginPage() {
-    signInButton.shouldBe(Condition.visible, Duration.ofSeconds(20)).click();
+    signInButton.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
     return new LoginPage();
   }
 

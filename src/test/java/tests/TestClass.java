@@ -3,6 +3,10 @@ package tests;
 import base.BaseTest;
 import builders.CreateAccountBuilder;
 import enums.ColorType;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,6 +38,8 @@ public class TestClass extends BaseTest {
   String priorityOnWishlist = "Medium";
   String quantityOnWishlist = "1";
 
+  @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Story("Check the possibility to order Casual dress by bank wire")
   @DisplayName("Check the possibility to order Casual dress by bank wire")
   @ParameterizedTest
   @CsvSource({"mfaiwdwwl@qq.q, Qwerty123"
@@ -47,6 +53,9 @@ public class TestClass extends BaseTest {
     orderClothesService.orderCasualDressByBankWire();
   }
 
+  @Step(value = " sd")
+  @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Description("Check the possibility to send email to Customer Service")
   @DisplayName("Check the possibility to send email to Customer Service")
   @Test
   public void checkSendEmailToCustomerService() {
@@ -63,6 +72,8 @@ public class TestClass extends BaseTest {
     assertEquals("Your message has been successfully sent to our team.", contactUsPage.getAlertMessage());
   }
 
+  @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Story("Check the possibility to write review about Faded Short Sleeve T-shirts")
   @DisplayName("Check the possibility to write review about Faded Short Sleeve T-shirts")
   @ParameterizedTest
   @CsvSource({"mfaiwdwwl@qq.q, Qwerty123"
@@ -85,6 +96,8 @@ public class TestClass extends BaseTest {
     fadedTShirtPage.clickOkButton();
   }
 
+  @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Story("Check the possibility to add Blouse to wishlist")
   @DisplayName("Check the possibility to add Blouse to wishlist")
   @ParameterizedTest
   @CsvSource({"mfaiwdwwl@qq.q, Qwerty123, Ivan Ivanov"
@@ -114,6 +127,8 @@ public class TestClass extends BaseTest {
     myWishlistsPage.clickDeleteButton();
   }
 
+  @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Story("Check the possibility Printed Summer Dress page display for different colour dress")
   @DisplayName("Check the possibility Printed Summer Dress page display for different colour dress")
   @Test
   public void CheckDisplayDifferentColour() {
@@ -133,5 +148,13 @@ public class TestClass extends BaseTest {
         .getSrcMainImage(), ColorType.ORANGE.getSrc());
     assertEquals(printedSummerDressPage.pickColorYellow()
         .getSrcMainImage(), ColorType.YELLOW.getSrc());
+  }
+
+  @Story("story test11")
+  @Description("Description test11")
+  @Epic("epic test11")
+  @Test
+  public void test1() {
+    System.out.println("test1");
   }
 }

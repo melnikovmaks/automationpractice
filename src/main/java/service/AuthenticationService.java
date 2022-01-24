@@ -1,6 +1,7 @@
 package service;
 
 import builders.CreateAccountBuilder;
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import pages.LoginPage;
 import pages.MyAccountPage;
@@ -11,6 +12,7 @@ public class AuthenticationService {
   RandomMailService randomMailService = new RandomMailService();
   LoginPage loginPage = new LoginPage();
 
+  @Step(value = "login on site")
   public MyAccountPage loginOnSite(
       String mail,
       String password
@@ -21,6 +23,7 @@ public class AuthenticationService {
     return new MyAccountPage();
   }
 
+  @Step(value = "create account")
   public MyAccountPage createAccount(
       CreateAccountBuilder createAccountBuilder
   ) {

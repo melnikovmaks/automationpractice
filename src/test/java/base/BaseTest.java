@@ -2,7 +2,9 @@ package base;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.model.TestConfig;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -52,12 +54,14 @@ public abstract class BaseTest {
 
   @BeforeEach
   public void startTest() {
+    SelenideLogger.addListener(
+        "Allure", new AllureSelenide().screenshots(true).savePageSource(false));
     Selenide.open("/");
   }
 
   @AfterEach
   public void tearDown() {
-    System.out.println("@AfterEach executed");
+    SelenideLogger.removeListener("Allure");
     Selenide.closeWindow();
   }
 }

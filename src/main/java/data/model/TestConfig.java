@@ -1,11 +1,13 @@
 package data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({ "selenium_timeout", "fake_base", "selenium_remote_url", "selenium_vnc"})
 public class TestConfig {
 
   @JsonProperty("base")
