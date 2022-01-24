@@ -1,11 +1,13 @@
 package service;
 
 import builders.CreateAccountBuilder;
+import org.apache.log4j.Logger;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
 public class AuthenticationService {
 
+  private static final Logger LOG = Logger.getLogger(AuthenticationService.class);
   RandomMailService randomMailService = new RandomMailService();
   LoginPage loginPage = new LoginPage();
 
@@ -44,6 +46,7 @@ public class AuthenticationService {
         .setMobilePhoneOnField(createAccountBuilder.getMobilePhone())
         .setAddressAliasFieldOnField(createAccountBuilder.getAddressAlias())
         .clickRegisterButton();
+    LOG.info("The account has been created.");
     return new MyAccountPage();
   }
 }

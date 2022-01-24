@@ -1,0 +1,12 @@
+{
+  "base": "http://automationpractice.com/",
+  "fake_base": "/404",
+  "selenium_screenshots": "true",
+  "selenium_browser": "chrome",
+  "selenium_timeout": "5000",
+  "selenium_headless": "false",
+  "selenium_remote_url": "http://localhost:4444/wd/hub",
+  "selenium_vnc": "true",
+  "selenium_browser_size": "1600x1080",
+  "options_arguments": "incognito"
+}

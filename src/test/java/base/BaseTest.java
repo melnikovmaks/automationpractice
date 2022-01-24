@@ -2,6 +2,8 @@ package base;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import data.model.TestConfig;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,7 @@ import pages.PrintedSummerDressPage;
 import pages.StartPage;
 import service.AuthenticationService;
 import service.OrderClothesService;
+import utils.TestConfigUtils;
 
 public abstract class BaseTest {
 
@@ -27,17 +30,24 @@ public abstract class BaseTest {
   protected final BlouseClothesPage blouseClothesPage = new BlouseClothesPage();
   protected final MyWishlistsPage myWishlistsPage = new MyWishlistsPage();
   protected final PrintedSummerDressPage printedSummerDressPage = new PrintedSummerDressPage();
+  protected static final TestConfig CONFIG = TestConfigUtils.getTestConfig();
+  private static final Logger LOG = Logger.getLogger(BaseTest.class);
 
   @BeforeAll
   public static void setUp() {
-    Configuration.browser = "chrome";
-    Configuration.screenshots = true;
-    Configuration.browserSize = "1600x1000";
-    Configuration.headless = false;
-    Configuration.baseUrl = "http://automationpractice.com/";
+    Configuration.browser = CONFIG.getBrowser();
+    Configuration.screenshots = CONFIG.isScreenshots();
+    Configuration.browserSize = CONFIG.getBrowserSize();
+    Configuration.headless = CONFIG.isHeadless();
+    Configuration.baseUrl = CONFIG.getBaseUrl();
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("incognito");
+    options.addArguments(CONFIG.getOptionsArguments());
     Configuration.browserCapabilities = options;
+    LOG.fatal("fatal log");
+    LOG.error("error log");
+    LOG.warn("warn log");
+    LOG.info("info log");
+    LOG.debug("debug log");
   }
 
   @BeforeEach
