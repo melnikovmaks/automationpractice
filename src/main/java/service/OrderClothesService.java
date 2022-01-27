@@ -1,5 +1,6 @@
 package service;
 
+import io.qameta.allure.Step;
 import pages.MyAccountPage;
 import pages.OrderConfirmationPage;
 
@@ -22,7 +23,8 @@ public class OrderClothesService {
       "Your order will be sent as soon as we receive payment.\n" +
       "If you have questions, comments or concerns, please contact our expert customer support team. .";
 
-  public void orderCasualDressByBankWire() {
+  @Step(value = "Check message after buy")
+  public void checkOrderCasualDressByBankWire() {
     myAccountPage.openCategoryDressesPage()
         .openCategoryCasualDressesPage()
         .hoverPrintedDress()

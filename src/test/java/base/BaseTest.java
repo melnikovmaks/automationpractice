@@ -2,12 +2,15 @@ package base;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import data.model.TestConfig;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.BlouseClothesPage;
 import pages.ContactUsPage;
 import pages.FadedTShirtPage;
@@ -42,7 +45,11 @@ public abstract class BaseTest {
     Configuration.baseUrl = CONFIG.getBaseUrl();
     ChromeOptions options = new ChromeOptions();
     options.addArguments(CONFIG.getOptionsArguments());
-    Configuration.browserCapabilities = options;
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability("browserName", CONFIG.getBrowser());
+    capabilities.setCapability("enableVNC", CONFIG.isEnableVNC());
+    Configuration.remote = CONFIG.getRemoteUrl();
+    Configuration.browserCapabilities = capabilities;
     LOG.fatal("fatal log");
     LOG.error("error log");
     LOG.warn("warn log");
@@ -52,12 +59,14 @@ public abstract class BaseTest {
 
   @BeforeEach
   public void startTest() {
+    SelenideLogger.addListener(
+        "Allure", new AllureSelenide().screenshots(true).savePageSource(false));
     Selenide.open("/");
   }
 
   @AfterEach
   public void tearDown() {
-    System.out.println("@AfterEach executed");
+    SelenideLogger.removeListener("Allure");
     Selenide.closeWindow();
   }
 }
