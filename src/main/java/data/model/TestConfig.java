@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties({ "selenium_timeout", "fake_base", "selenium_remote_url", "selenium_vnc"})
+@JsonIgnoreProperties({ "selenium_timeout", "fake_base"})
 public class TestConfig {
 
   @JsonProperty("base")

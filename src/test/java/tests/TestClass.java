@@ -53,7 +53,7 @@ public class TestClass extends BaseTest {
     orderClothesService.checkOrderCasualDressByBankWire();
   }
 
-  @Step(value = " sd")
+  @Step(value = " start test check send email to customer service")
   @Epic("TESTING FOR http://automationpractice.com/ tasks")
   @Description("Check the possibility to send email to Customer Service")
   @DisplayName("Check the possibility to send email to Customer Service")
