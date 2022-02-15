@@ -1,0 +1,17 @@
+{
+  "chrome": {
+    "default": "96.0",
+    "versions": {
+      "96.0": {
+        "image": "selenoid/chrome:96.0",
+        "port": "4444",
+        "path": "/"
+      },
+      "97.0": {
+        "image": "selenoid/chrome:97.0",
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  }
+}
