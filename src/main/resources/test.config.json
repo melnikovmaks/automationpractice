@@ -1,12 +1,24 @@
 {
-  "base": "http://automationpractice.com/",
-  "fake_base": "/404",
-  "selenium_screenshots": "true",
+  "test_rail_base_url" : "https://automationpracticetest.testrail.io/index.php?",
+  "test_rail_username": "maksim9805@mail.ru",
+  "test_rail_api_key": "XcCHPIyib86Uc0zn57ey-DhgvgSsA.1kYKRS.M55N",
+  "base_url" : "http://automationpractice.com/",
   "selenium_browser": "chrome",
-  "selenium_timeout": "5000",
+  "selenium_browser_version": "97.0",
+  "selenium_timeout": "10000",
   "selenium_headless": "false",
   "selenium_remote_url": "http://localhost:4444/wd/hub",
   "selenium_vnc": "true",
-  "selenium_browser_size": "1600x1080",
-  "options_arguments": "incognito"
+  "rest_assured_base_path": "/config",
+  "runType" : "remote",
+
+  "selenium_start_maximized": "true",
+
+  "us_url" : "https://localhost:8000",
+  "us_google_url" : "https://localhost:5011",
+
+  "remote_base_url" : "https://automation-broker-service.spanning.co:9001",
+  "k1_callback" : "/login/k1/callback",
+  "app_auth_paths": "/authapi/ssb",
+  "auth_path": "/login/jwt"
 }
