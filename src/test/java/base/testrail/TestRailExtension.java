@@ -4,22 +4,22 @@ import java.util.Date;
 import java.util.Optional;
 
 import enums.TestRailStatus;
-import service.TestRailManagerClient;
-import service.impl.TestRailRailClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import service.TestRailManagerClient;
+import service.impl.TestRailRailClient;
 
 import static base.BaseTest.CONFIG;
 
 @Slf4j
 public class TestRailExtension implements AfterTestExecutionCallback, BeforeAllCallback {
 
-  private static final String APPLICATION_NAME = "test";
-  private static final String SUITE_NAME = "Master";
+  private static final String APPLICATION_NAME = "BROKER";
+  private static final String SUITE_NAME = "automationPractice";
   private static final String AUTOMATION_TEST_NAME = "BROKER functional automated tests run " + new Date();
   private static final String AUTOMATION_TEST_DESCRIPTION = "Automation run";
 
@@ -34,8 +34,11 @@ public class TestRailExtension implements AfterTestExecutionCallback, BeforeAllC
             .applicationName(APPLICATION_NAME)
             .suiteName(SUITE_NAME)
             .build();
+        System.out.println(testManagerService);
+        int w = 1;
         if (CONFIG.isRemoteType()) {
           runId = testManagerService.createRun(AUTOMATION_TEST_NAME, AUTOMATION_TEST_DESCRIPTION);
+          int q = 1;
         }
       }
     } catch (Exception error) {

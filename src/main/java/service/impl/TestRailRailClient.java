@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 
 import enums.TestRailStatus;
+import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import model.config.TestConfig;
 import model.testrail.Case;
 import model.testrail.CasePage;
@@ -15,12 +17,10 @@ import model.testrail.RunResponse;
 import model.testrail.Runs;
 import model.testrail.Suite;
 import model.testrail.User;
-import service.TestRailManagerClient;
-import utils.TestConfigSettings;
-import lombok.Builder;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NotFoundException;
+import service.TestRailManagerClient;
+import utils.TestConfigSettings;
 
 @Slf4j
 public class TestRailRailClient implements TestRailManagerClient {
@@ -52,7 +52,6 @@ public class TestRailRailClient implements TestRailManagerClient {
         .comment(comment)
         .defects(StringUtils.defaultIfEmpty(
             StringUtils.abbreviate(defects, 0, LIMIT_DEFECT_STRING), ""))
-        .assignedToId(getCurrentUserId())
         .build();
 
     if (StringUtils.isNotBlank(defects)) {
@@ -79,7 +78,6 @@ public class TestRailRailClient implements TestRailManagerClient {
         .suiteId(this.suiteId)
         .name(this.applicationName)
         .description(automationTestDescription)
-        .assignedtoId(getCurrentUserId())
         .includeAll(true)
         .build();
 

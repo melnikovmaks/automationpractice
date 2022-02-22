@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import model.config.TestConfig;
 import org.openqa.selenium.NotFoundException;
 
@@ -24,7 +23,8 @@ public class TestConfigRepository {
 
   public TestConfig getTestConfig() {
     try {
-      return mapper.readValue(getClass().getClassLoader().getResource(PATH_TO_FILE), new TypeReference<TestConfig>() {});
+      return mapper.readValue(getClass().getClassLoader().getResource(PATH_TO_FILE),
+          new TypeReference<TestConfig>() {});
     } catch (IOException e) {
       throw new NotFoundException("Expected to have test properties read from file:  " + PATH_TO_FILE
           + "\nDetail message: " + e.getMessage());
