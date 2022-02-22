@@ -3,15 +3,17 @@ package tests;
 import base.BaseTest;
 import builders.CreateAccountBuilder;
 import enums.ColorType;
-import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestClass extends BaseTest {
@@ -50,18 +52,46 @@ public class TestClass extends BaseTest {
   ) {
     startPage.openLoginPage();
     authenticationService.loginOnSite(mail, password);
-    orderClothesService.checkOrderCasualDressByBankWire();
+    myAccountPage.openCategoryDressesPage()
+        .openCategoryCasualDressesPage()
+        .hoverPrintedDress()
+        .addToCart()
+        .redirectToShoppingCart()
+        .clickProceedToCheckoutButton()
+        .clickProceedToCheckoutButton()
+        .clickTermsOfServiceCheckbox()
+        .clickProceedToCheckoutButton()
+        .clickPayByBankWireButton()
+        .clickIConfirmMyOrderButton();
+    assertAll(
+        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.startsWith(startMessageText)),
+        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.endsWith(endsMessageText))
+    );
   }
 
   @Step(value = " start test check send email to customer service")
   @Epic("TESTING FOR http://automationpractice.com/ tasks")
-  @Description("Check the possibility to send email to Customer Service")
   @DisplayName("Check the possibility to send email to Customer Service")
   @Test
   public void checkSendEmailToCustomerService() {
     startPage.openLoginPage();
     authenticationService.createAccount(createAccountBuilder);
-    orderClothesService.checkOrderCasualDressByBankWire();
+    myAccountPage.openCategoryDressesPage()
+        .openCategoryCasualDressesPage()
+        .hoverPrintedDress()
+        .addToCart()
+        .redirectToShoppingCart()
+        .clickProceedToCheckoutButton()
+        .clickProceedToCheckoutButton()
+        .clickTermsOfServiceCheckbox()
+        .clickProceedToCheckoutButton()
+        .clickPayByBankWireButton()
+        .clickIConfirmMyOrderButton();
+    assertAll(
+        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.startsWith(startMessageText)),
+        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.endsWith(endsMessageText))
+    );
+
     orderConfirmationPage.clickContactUsButton()
         .pickContactCustomerService()
         .pickLastOrder()
@@ -114,7 +144,7 @@ public class TestClass extends BaseTest {
         .hoverFadedTShirt()
         .clickMoreButton()
         .clickWishlistButton();
-    assertEquals(messageAfterAddToWishlist, blouseClothesPage.getMessage());
+    assertThat(messageAfterAddToWishlist, CoreMatchers.equalTo(blouseClothesPage.getMessage()));
     blouseClothesPage.clickCloseMessageButton();
     assertEquals(
         accountName,
@@ -122,8 +152,8 @@ public class TestClass extends BaseTest {
     blouseClothesPage.clickAccountName()
         .clickWishlistButton();
     myWishlistsPage.clickMyWishlistButton();
-    assertEquals(quantityOnWishlist, myWishlistsPage.getQuantity());
-    assertEquals(priorityOnWishlist, myWishlistsPage.getPriority());
+    assertThat(quantityOnWishlist, CoreMatchers.equalTo(myWishlistsPage.getQuantity()));
+    assertThat(priorityOnWishlist, CoreMatchers.equalTo(myWishlistsPage.getPriority()));
     myWishlistsPage.clickDeleteButton();
   }
 
@@ -136,17 +166,17 @@ public class TestClass extends BaseTest {
         .clickSummerDressesCategory()
         .hoverFirstPrintedDress()
         .clickMoreButton();
-    assertEquals(printedSummerDressPage.getColorOrangeColorPick(), ColorType.ORANGE.getRgba());
-    assertEquals(printedSummerDressPage.getColorBlueColorPick(), ColorType.BLUE.getRgba());
-    assertEquals(printedSummerDressPage.getColorBlackColorPick(), ColorType.BLACK.getRgba());
-    assertEquals(printedSummerDressPage.getColorYellowColorPick(), ColorType.YELLOW.getRgba());
-    assertEquals(printedSummerDressPage.pickColorBlack()
-        .getSrcMainImage(), ColorType.BLACK.getSrc());
-    assertEquals(printedSummerDressPage.pickColorBlue()
-        .getSrcMainImage(), ColorType.BLUE.getSrc());
-    assertEquals(printedSummerDressPage.pickColorOrange()
-        .getSrcMainImage(), ColorType.ORANGE.getSrc());
-    assertEquals(printedSummerDressPage.pickColorYellow()
-        .getSrcMainImage(), ColorType.YELLOW.getSrc());
+    assertThat(printedSummerDressPage.getColorOrangeColorPick(), CoreMatchers.equalTo(ColorType.ORANGE.getRgba()));
+    assertThat(printedSummerDressPage.getColorBlueColorPick(), CoreMatchers.equalTo(ColorType.BLUE.getRgba()));
+    assertThat(printedSummerDressPage.getColorBlackColorPick(), CoreMatchers.equalTo(ColorType.BLACK.getRgba()));
+    assertThat(printedSummerDressPage.getColorYellowColorPick(), CoreMatchers.equalTo(ColorType.YELLOW.getRgba()));
+    assertThat(printedSummerDressPage.pickColorBlack()
+        .getSrcMainImage(), CoreMatchers.equalTo(ColorType.BLACK.getSrc()));
+    assertThat(printedSummerDressPage.pickColorBlue()
+        .getSrcMainImage(), CoreMatchers.equalTo(ColorType.BLUE.getSrc()));
+    assertThat(printedSummerDressPage.pickColorOrange()
+        .getSrcMainImage(), CoreMatchers.equalTo(ColorType.ORANGE.getSrc()));
+    assertThat(printedSummerDressPage.pickColorYellow()
+        .getSrcMainImage(), CoreMatchers.equalTo(ColorType.YELLOW.getSrc()));
   }
 }
