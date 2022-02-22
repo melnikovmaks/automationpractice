@@ -1,8 +1,8 @@
 #!/bin/bash
 
 main() {
-
   # Removes selenoid if exists
+
   stop_and_remove_if_exists selenoid
   remove_image_if_exists selenoid
   docker-compose up --no-recreate -d selenoid
