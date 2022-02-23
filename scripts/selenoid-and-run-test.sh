@@ -3,6 +3,7 @@
 main() {
   # Removes selenoid if exists
 
+
   stop_and_remove_if_exists selenoid
   remove_image_if_exists selenoid
   docker-compose up --no-recreate -d selenoid
@@ -13,6 +14,8 @@ main() {
   stop_and_remove_if_exists selenoid-ui
   remove_image_if_exists selenoid-ui
   docker-compose up --no-recreate -d selenoid-ui
+
+  docker network ls
 
   i="0"
   while [ $i -lt 3 ]; do
