@@ -16,7 +16,6 @@ import model.testrail.Result;
 import model.testrail.RunResponse;
 import model.testrail.Runs;
 import model.testrail.Suite;
-import model.testrail.User;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NotFoundException;
 import service.TestRailManagerClient;
@@ -28,7 +27,6 @@ public class TestRailRailClient implements TestRailManagerClient {
   private static final String GET_PROJECTS_URI = "/api/v2/get_projects";
   private static final String GET_SUITES_URI = "/api/v2/get_suites/";
   private static final String GET_CASES_URI = "/api/v2/get_cases/";
-  private static final String GET_CURRENT_USERS_URI = "/api/v2/get_current_user";
   private static final String ADD_RUN_URI = "/api/v2/add_run/";
   private static final String ADD_RESULT_FOR_CASE_URI = "/api/v2/add_result_for_case/";
 
@@ -86,10 +84,6 @@ public class TestRailRailClient implements TestRailManagerClient {
         runs,
         RunResponse.class
     ).getId();
-  }
-
-  private Integer getCurrentUserId() throws Exception {
-    return this.apiClient.sendGet(GET_CURRENT_USERS_URI, User.class).getId();
   }
 
   private Integer getCaseIdByTitle(
