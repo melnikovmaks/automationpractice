@@ -9,7 +9,6 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.qameta.allure.selenide.LogType;
 import model.config.TestConfig;
-import org.apache.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +41,6 @@ public abstract class BaseTest {
   protected final MyWishlistsPage myWishlistsPage = new MyWishlistsPage();
   protected final PrintedSummerDressPage printedSummerDressPage = new PrintedSummerDressPage();
   public static final TestConfig CONFIG = TestConfigSettings.getInstance().getTestConfig();
-  private static final Logger LOG = Logger.getLogger(BaseTest.class);
   protected final String startMessageText = "Your order on My Store is complete.\n" +
       "Please send us a bank wire with\n" +
       "- Amount $28.00\n" +

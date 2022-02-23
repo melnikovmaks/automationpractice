@@ -35,10 +35,8 @@ public class TestRailExtension implements AfterTestExecutionCallback, BeforeAllC
             .suiteName(SUITE_NAME)
             .build();
         System.out.println(testManagerService);
-        int w = 1;
         if (CONFIG.isRemoteType()) {
           runId = testManagerService.createRun(AUTOMATION_TEST_NAME, AUTOMATION_TEST_DESCRIPTION);
-          int q = 1;
         }
       }
     } catch (Exception error) {
