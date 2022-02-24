@@ -10,7 +10,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: [ "-conf", "/etc/selenoid/browsers.json",
                "-video-output-dir", "/opt/selenoid/video",
-               "-container-network", "runbashscript_default" ]
+               "-container-network", "automationpractice_default" ]
     networks:
       - default
 
