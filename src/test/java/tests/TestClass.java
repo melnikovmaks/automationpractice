@@ -13,8 +13,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class TestClass extends BaseTest {
 
@@ -64,8 +66,8 @@ public class TestClass extends BaseTest {
         .clickPayByBankWireButton()
         .clickIConfirmMyOrderButton();
     assertAll(
-        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.startsWith(startMessageText)),
-        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.endsWith(endsMessageText))
+        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(startMessageText)),
+        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(endsMessageText))
     );
   }
 
@@ -88,8 +90,8 @@ public class TestClass extends BaseTest {
         .clickPayByBankWireButton()
         .clickIConfirmMyOrderButton();
     assertAll(
-        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.startsWith(startMessageText)),
-        () -> assertThat(orderConfirmationPage.informationBox(), CoreMatchers.endsWith(endsMessageText))
+        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(startMessageText)),
+        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(endsMessageText))
     );
 
     orderConfirmationPage.clickContactUsButton()
@@ -99,7 +101,8 @@ public class TestClass extends BaseTest {
         .setMessageFieldOnField(messageToCustomerService)
         .clickSendButton();
 
-    assertEquals("Your message has been successfully sent to our team.", contactUsPage.getAlertMessage());
+    assertThat("Your message has been successfully sent to our team.",
+        CoreMatchers.equalTo(contactUsPage.getAlertMessage()));
   }
 
   @Epic("TESTING FOR http://automationpractice.com/ tasks")
@@ -122,7 +125,7 @@ public class TestClass extends BaseTest {
         .setTitleField(reviewTitleMessage)
         .setCommentField(commentToReview)
         .clickSendButton();
-    assertEquals(messageAfterReview, fadedTShirtPage.getMessage());
+    assertThat(messageAfterReview, CoreMatchers.equalTo(fadedTShirtPage.getMessage()));
     fadedTShirtPage.clickOkButton();
   }
 
@@ -146,9 +149,9 @@ public class TestClass extends BaseTest {
         .clickWishlistButton();
     assertThat(messageAfterAddToWishlist, CoreMatchers.equalTo(blouseClothesPage.getMessage()));
     blouseClothesPage.clickCloseMessageButton();
-    assertEquals(
+    assertThat(
         accountName,
-        blouseClothesPage.getAccountName());
+        CoreMatchers.equalTo(blouseClothesPage.getAccountName()));
     blouseClothesPage.clickAccountName()
         .clickWishlistButton();
     myWishlistsPage.clickMyWishlistButton();

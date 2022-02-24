@@ -8,9 +8,8 @@ main() {
   remove_image_if_exists selenoid
   docker-compose up --no-recreate -d selenoid
   docker image ls selenoid/chrome:97.0 | grep 'selenoid/chrome' || docker pull selenoid/chrome:97.0
+  docker image ls selenoid/chrome:96.0 | grep 'selenoid/chrome' || docker pull selenoid/chrome:96.0
   docker image ls selenoid/firefox:96.0 | grep 'selenoid/firefox' || docker pull selenoid/firefox:96.0
-
-
 
   docker network ls
 
@@ -26,7 +25,7 @@ main() {
     docker images | grep 'selenoid/chrome' || continue
     docker images | grep 'selenoid/firefox' || continue
 
-    docker run --rm --name healthcheck --network runbashscript_default curlimages/curl:7.72.0 \
+    docker run --rm --name healthcheck --network automationpractice_default curlimages/curl:7.72.0 \
       curl -i selenoid:4444 | grep "HTTP/1.1 200 OK" && break
 
     echo "Waiting for selenoid to start..."
