@@ -31,6 +31,7 @@
         <jackson-databind.version>2.9.9</jackson-databind.version>
         <log4j.version>1.2.17</log4j.version>
         <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+        <spring-boot-starter-test.version>2.6.3</spring-boot-starter-test.version>
         <hamcrest-all.version>1.1</hamcrest-all.version>
     </properties>
 
