@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.BlouseClothesPage;
 import pages.ContactUsPage;
@@ -25,6 +26,9 @@ import pages.PrintedSummerDressPage;
 import pages.StartPage;
 import service.AuthenticationService;
 import utils.TestConfigSettings;
+
+import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Browsers.FIREFOX;
 
 @ExtendWith({TestRailExtension.class})
 public abstract class BaseTest {
@@ -41,30 +45,32 @@ public abstract class BaseTest {
   protected final MyWishlistsPage myWishlistsPage = new MyWishlistsPage();
   protected final PrintedSummerDressPage printedSummerDressPage = new PrintedSummerDressPage();
   public static final TestConfig CONFIG = TestConfigSettings.getInstance().getTestConfig();
-  protected final String startMessageText = "Your order on My Store is complete.\n" +
-      "Please send us a bank wire with\n" +
-      "- Amount $28.00\n" +
-      "- Name of account owner Pradeep Macharla\n" +
-      "- Include these details xyz\n" +
-      "- Bank name RTP\n" +
-      "- Do not forget to insert your order reference";
-  protected final String endsMessageText = "in the subject of your bank wire.\n" +
-      "An email has been sent with this information.\n" +
-      "Your order will be sent as soon as we receive payment.\n" +
-      "If you have questions, comments or concerns, please contact our expert customer support team. .";
 
   @BeforeAll
   public static void setUp() {
+    Configuration.baseUrl = CONFIG.getBaseUrl();
+    Configuration.timeout = CONFIG.getTimeout();
+    Configuration.browserVersion = CONFIG.getBrowserVersion();
     Configuration.browser = CONFIG.getBrowser();
     Configuration.browserSize = CONFIG.getBrowserSize();
     Configuration.headless = CONFIG.getHeadless();
-    Configuration.baseUrl = CONFIG.getBaseUrl();
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("incognito");
+    Configuration.savePageSource = CONFIG.getSelenideSavePageSource();
     DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability("browserName", CONFIG.getBrowser());
+    if (CONFIG.isRemoteType()) {
+      Configuration.remote = CONFIG.getRemoteUrl();
+    }
+    if (CONFIG.getBrowser().equals("firefox")) {
+      capabilities.setBrowserName(FIREFOX);
+      final FirefoxOptions options = new FirefoxOptions().addArguments("private");
+      capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
+    }
+    if (CONFIG.getBrowser().equals("chrome")) {
+      capabilities.setBrowserName(CHROME);
+      final ChromeOptions options = new ChromeOptions().addArguments("incognito");
+      capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+    }
     capabilities.setCapability("enableVNC", CONFIG.getEnabledVnc());
-    Configuration.remote = CONFIG.getRemoteUrl();
+    Configuration.fastSetValue = true;
     Configuration.browserCapabilities = capabilities;
   }
 
