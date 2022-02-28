@@ -143,8 +143,8 @@
                         <id>validate</id>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>${basedir}/checkstyle.xml</configLocation>
-                            <suppressionsLocation>${basedir}/checkstyle-suppressions.xml
+                            <configLocation>${basedir}/codequality/checkstyle.xml</configLocation>
+                            <suppressionsLocation>${basedir}/codequality/checkstyle-suppressions.xml
                             </suppressionsLocation>
                             <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
                             <encoding>UTF-8</encoding>
@@ -176,7 +176,7 @@
                     <failOnViolation>true</failOnViolation>
                     <includeTests>true</includeTests>
                     <rulesets>
-                        <ruleset>pmd-ruleset.xml</ruleset>
+                        <ruleset>/codequality/pmd-ruleset.xml</ruleset>
                     </rulesets>
                     <excludeRoots>
                         <excludeRoot>target/generated-sources</excludeRoot>

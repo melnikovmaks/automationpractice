@@ -3,8 +3,8 @@ package tests;
 import base.BaseTest;
 import builders.CreateAccountBuilder;
 import enums.ColorType;
+import enums.SiteMessage;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.jupiter.api.Assertions.assertAll;
-
 
 public class TestClass extends BaseTest {
 
@@ -33,14 +32,6 @@ public class TestClass extends BaseTest {
       .mobilePhone("+375333333333")
       .addressAlias("18, Baker street")
       .build();
-  String messageToCustomerService = "I have a problem with my order. Could you help me";
-  String commentToReview = "Faded short sleeve t-shirt with high neckline."
-      + " Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!";
-  String messageAfterReview = "Your comment has been added and will be available once approved by a moderator";
-  String messageAfterAddToWishlist = "Added to your wishlist.";
-  String reviewTitleMessage = "High quality product";
-  String priorityOnWishlist = "Medium";
-  String quantityOnWishlist = "1";
 
   @Epic("TESTING FOR http://automationpractice.com/ tasks")
   @Story("Check the possibility to order Casual dress by bank wire")
@@ -66,13 +57,13 @@ public class TestClass extends BaseTest {
         .clickPayByBankWireButton()
         .clickIConfirmMyOrderButton();
     assertAll(
-        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(startMessageText)),
-        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(endsMessageText))
+        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(SiteMessage.START_MESSAGE_TEXT.getValue())),
+        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(SiteMessage.ENDS_MESSAGE_TEXT.getValue()))
     );
   }
 
-  @Step(value = " start test check send email to customer service")
   @Epic("TESTING FOR http://automationpractice.com/ tasks")
+  @Story("Check the possibility to send email to Customer Service")
   @DisplayName("Check the possibility to send email to Customer Service")
   @Test
   public void checkSendEmailToCustomerService() {
@@ -90,18 +81,19 @@ public class TestClass extends BaseTest {
         .clickPayByBankWireButton()
         .clickIConfirmMyOrderButton();
     assertAll(
-        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(startMessageText)),
-        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(endsMessageText))
+        () -> assertThat(orderConfirmationPage.informationBox(), startsWith(SiteMessage.START_MESSAGE_TEXT.getValue())),
+        () -> assertThat(orderConfirmationPage.informationBox(), endsWith(SiteMessage.ENDS_MESSAGE_TEXT.getValue()))
     );
 
     orderConfirmationPage.clickContactUsButton()
         .pickContactCustomerService()
         .pickLastOrder()
         .pickLastProduct()
-        .setMessageFieldOnField(messageToCustomerService)
+        .setMessageFieldOnField(SiteMessage.MESSAGE_TO_CUSTOMER_SERVICE.getValue())
         .clickSendButton();
 
-    assertThat("Your message has been successfully sent to our team.",
+    assertThat(
+        "Your message has been successfully sent to our team.",
         CoreMatchers.equalTo(contactUsPage.getAlertMessage()));
   }
 
@@ -122,10 +114,10 @@ public class TestClass extends BaseTest {
         .clickMoreButton()
         .clickReviewButton()
         .pickQuality5Stars()
-        .setTitleField(reviewTitleMessage)
-        .setCommentField(commentToReview)
+        .setTitleField(SiteMessage.REVIEW_TITLE_MESSAGE.getValue())
+        .setCommentField(SiteMessage.COMMENT_TO_REVIEW.getValue())
         .clickSendButton();
-    assertThat(messageAfterReview, CoreMatchers.equalTo(fadedTShirtPage.getMessage()));
+    assertThat(SiteMessage.MESSAGE_AFTER_REVIEW.getValue(), CoreMatchers.equalTo(fadedTShirtPage.getMessage()));
     fadedTShirtPage.clickOkButton();
   }
 
@@ -147,7 +139,8 @@ public class TestClass extends BaseTest {
         .hoverFadedTShirt()
         .clickMoreButton()
         .clickWishlistButton();
-    assertThat(messageAfterAddToWishlist, CoreMatchers.equalTo(blouseClothesPage.getMessage()));
+    assertThat(SiteMessage.MESSAGE_AFTER_ADD_TO_WISHLIST.getValue(),
+        CoreMatchers.equalTo(blouseClothesPage.getMessage()));
     blouseClothesPage.clickCloseMessageButton();
     assertThat(
         accountName,
@@ -155,8 +148,8 @@ public class TestClass extends BaseTest {
     blouseClothesPage.clickAccountName()
         .clickWishlistButton();
     myWishlistsPage.clickMyWishlistButton();
-    assertThat(quantityOnWishlist, CoreMatchers.equalTo(myWishlistsPage.getQuantity()));
-    assertThat(priorityOnWishlist, CoreMatchers.equalTo(myWishlistsPage.getPriority()));
+    assertThat(SiteMessage.QUANTITY_ON_WISHLIST.getValue(), CoreMatchers.equalTo(myWishlistsPage.getQuantity()));
+    assertThat(SiteMessage.PRIORITY_ON_WISHLIST.getValue(), CoreMatchers.equalTo(myWishlistsPage.getPriority()));
     myWishlistsPage.clickDeleteButton();
   }
 

@@ -3,7 +3,6 @@
 main() {
   # Removes selenoid if exists
 
-
   stop_and_remove_if_exists selenoid
   remove_image_if_exists selenoid
   docker-compose up --no-recreate -d selenoid
@@ -11,10 +10,8 @@ main() {
   docker image ls selenoid/chrome:96.0 | grep 'selenoid/chrome' || docker pull selenoid/chrome:96.0
   docker image ls selenoid/firefox:96.0 | grep 'selenoid/firefox' || docker pull selenoid/firefox:96.0
 
-  docker network ls
-
   i="0"
-  while [ $i -lt 3 ]; do
+  while [ $i -lt 5 ]; do
     i=$(($i + 1))
 
     if [ -n "$(docker ps -aq --filter "name=healthcheck")" ]; then
@@ -32,12 +29,10 @@ main() {
 
     sleep 3
 
-    if [ "$i" -eq 3 ]; then
-      echo -e "======== ${RED}FAILED TO START ...${NC} ========\n"
+    if [ "$i" -eq 5 ]; then
+      echo -e "========FAILED TO START SELENOID...========\n"
 
       docker ps -a
-
-      docker logs $TEST_CONTAINER_NAME
       echo -e "======================================================================="
       exit 1
     fi
