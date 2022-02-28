@@ -13,7 +13,7 @@ with the formation of the allure report
 - Locato: CSS selector
 - Junit 5
 - log4j
-- All configuration from json file
+- Json file for configuration
 - Solenoid in docker
 - Jenkins
 - Bash script 
