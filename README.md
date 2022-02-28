@@ -1,4 +1,4 @@
-# implementation of autotests for the site "http://automationpractice.com"
+# Implementation of autotests for the site "http://automationpractice.com"
 
 Implementation of autotests on selenium with the ability to run from jenkins,
 ![image](https://user-images.githubusercontent.com/22727314/155891612-1251e03d-b00b-44d8-b009-2a6d502a8e57.png)
