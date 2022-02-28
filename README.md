@@ -8,7 +8,7 @@ via bash script with raising selenoid in docker and recording the results in tes
 with the formation of the allure report
 ![image](https://user-images.githubusercontent.com/22727314/155891795-95a27144-fa1f-4425-ad24-cfd6aa41ff37.png)
 
-### Use
+### Use:
 - selenide 6.1.1
 - Locato: CSS selector
 - Junit 5
