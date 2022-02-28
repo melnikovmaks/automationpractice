@@ -32,7 +32,7 @@ public class TestRailRailClient implements TestRailManagerClient {
 
   private static final int LIMIT_DEFECT_STRING = 250;
 
-  private static final String applicationName = "Automationpractice";
+  private static final String APPLICATION_NAME = "Automationpractice";
   private final BasicAuthApiClient apiClient;
   private final Integer projectId;
   private final Integer suiteId;
@@ -74,7 +74,7 @@ public class TestRailRailClient implements TestRailManagerClient {
     }
     final Runs runs = Runs.builder()
         .suiteId(this.suiteId)
-        .name(applicationName)
+        .name(APPLICATION_NAME)
         .description(automationTestDescription)
         .includeAll(true)
         .build();
