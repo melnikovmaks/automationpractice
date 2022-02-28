@@ -22,3 +22,4 @@ Bash sckript is used to start the tests
 - Jenkins
 - Bash script
 - Integration with testrail
+- Сheckstyle
